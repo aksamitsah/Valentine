@@ -4,7 +4,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./prisma";
 
 export const authOptions: NextAuthOptions = {
-    // @ts-expect-error - Prisma v7 types are not fully compatible with @auth/prisma-adapter yet
     adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
