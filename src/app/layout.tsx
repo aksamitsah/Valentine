@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: "Be My Valentine 💕",
   description: "Create a special Valentine's proposal link for your loved one",
   keywords: ["valentine", "love", "proposal", "romantic"],
+  icons: {
+    icon: "/icon.svg?v=2",
+    apple: "/icon.svg?v=2",
+    shortcut: "/icon.svg?v=2",
+  },
 };
 
 export default function RootLayout({
