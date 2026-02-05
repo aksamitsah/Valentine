@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  proposals     Proposal[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Proposal {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  creatorName String
+  partnerName String
+  message     String?
+  image       String?    @db.Text // Creator's profile/couple image
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  responses   Response[]
+  views       View[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model View {
+  id         String   @id @default(cuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  ipHash     String?  // Hashed IP for unique visitor tracking
+  userAgent  String?
+  viewedAt   DateTime @default(now())
+
+  @@index([proposalId])
+}
+
+model Response {
+  id          String    @id @default(cuid())
+  proposalId  String
+  proposal    Proposal  @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  answered    Boolean   @default(false)
+  timeToYes   Int?
+  noAttempts  Int       @default(0)
+  image       String?   @db.Text // Base64 encoded image
+  respondedAt DateTime?
+  createdAt   DateTime  @default(now())
+}
