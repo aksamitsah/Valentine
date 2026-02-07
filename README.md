@@ -1,6 +1,8 @@
 # 💕 Valentine Proposal App
 
-A playful and interactive web application for creating personalized Valentine's Day proposals. Create a special link, share it with your loved one, and watch them try to escape the inevitable YES! 🎉
+A beautiful and interactive web application for creating personalized Valentine's Day proposals. Create a special link, share it with your loved one, and watch them try to escape the inevitable YES! 🎉
+
+![Valentine App Screenshot](screenshot.png)
 
 ## ✨ Features
 
@@ -8,32 +10,39 @@ A playful and interactive web application for creating personalized Valentine's 
 
 - **Google OAuth Authentication** - Secure sign-in with Google accounts
 - **Personalized Proposal Links** - Create unique, shareable proposal links with custom names and messages
-- **Playful NO Button** - Interactive button that escapes when hovered or tapped, making it fun to say "no"
+- **Playful NO Button** - Interactive button that escapes when hovered or tapped, making it impossible to say "no"
 - **Real-time Analytics** - Track how long it takes for someone to say YES and count NO attempts
-- **Page View Tracking** - Monitor total views and unique visitors for each proposal
 - **Image Uploads** - 
   - **Creator Image**: Upload a photo when creating a proposal (displays on success page)
   - **Responder Image**: Upload a photo after saying YES (displays on success page and dashboard)
 - **Success Page** - Beautiful celebration page with confetti, stats, and image sharing
 - **Dashboard** - Manage all your proposals, view analytics, edit, delete, and copy links
-- **Responsive Design** - Beautiful UI that works on desktop and mobile devices
+- **Responsive Design** - Beautiful UI optimized for desktop and mobile devices
+- **iOS Safari Optimized** - Full support for iOS safe-area insets, theme-color, and PWA features
 
 ### 📊 Analytics Features
 
 - **Time to YES** - Track how long (in minutes/seconds) it took to accept
 - **NO Attempts Counter** - Count how many times the NO button was clicked
-- **View Statistics** - Total views and unique visitor counts per proposal
 - **Response History** - View all responses with timestamps and images
 - **Formatted Dates** - Display response dates with full date, time, and seconds
 
 ### 🎨 UI/UX Features
 
-- **Animated Backgrounds** - Falling hearts animation on proposal pages
-- **Confetti Celebration** - Animated confetti on success page
+- **Romantic Typography** - Beautiful cursive fonts including:
+  - **Great Vibes** - Elegant cursive heading for "Will you be my Valentine?"
+  - **Dancing Script** - Script style for accents
+  - **Poppins** - Modern body text
+- **Animated Backgrounds** - Floating hearts animation on proposal pages
+- **Confetti Celebration** - Animated confetti explosion on success page
 - **Smooth Animations** - Powered by Framer Motion for delightful interactions
-- **Glass Morphism Design** - Modern glass-card UI elements
-- **Gradient Text** - Beautiful gradient effects for headings
-- **Dark Theme** - Elegant dark color scheme perfect for romantic moments
+- **Glass Morphism Design** - Modern glass-card UI elements with soft blur effects
+- **Gradient Text** - Beautiful pink gradient effects for headings
+- **Dark Theme** - Elegant dark color scheme (#0a0a0a) perfect for romantic moments
+- **Mobile Optimizations**:
+  - iOS Safari address bar/bottom bar color matching
+  - Safe area insets for iPhone notch/home indicator
+  - Responsive NO button movement (stays visible on mobile)
 
 ## 🛠️ Tech Stack
 
@@ -42,13 +51,14 @@ A playful and interactive web application for creating personalized Valentine's 
 - **React 19.2.3** - UI library
 - **TypeScript** - Type-safe development
 - **Tailwind CSS 4** - Utility-first CSS framework
-- **Framer Motion** - Animation library
+- **Framer Motion 12** - Animation library
+- **Google Fonts** - Great Vibes, Dancing Script, Poppins
 
 ### Backend
 - **Next.js API Routes** - Serverless API endpoints
-- **NextAuth.js** - Authentication with Google OAuth
+- **NextAuth.js 4** - Authentication with Google OAuth
 - **Prisma 7.3.0** - Modern ORM for database management
-- **PostgreSQL** - Production database (via Aiven)
+- **PostgreSQL** - Production database (via Aiven, Supabase, etc.)
 
 ### Database Models
 - **User** - User accounts (via NextAuth)
@@ -122,44 +132,88 @@ A playful and interactive web application for creating personalized Valentine's 
 ```
 valentine-app/
 ├── prisma/
-│   ├── schema.prisma          # Database schema
-│   └── prisma.config.ts        # Prisma CLI configuration
-├── public/                     # Static assets
+│   └── schema.prisma              # Database schema
+├── public/                         # Static assets
+│   └── icon.svg                    # App icon/favicon
 ├── src/
 │   ├── app/
 │   │   ├── api/
 │   │   │   ├── auth/
 │   │   │   │   └── [...nextauth]/
-│   │   │   │       └── route.ts        # NextAuth configuration
+│   │   │   │       └── route.ts   # NextAuth configuration
 │   │   │   ├── proposals/
 │   │   │   │   ├── [slug]/
-│   │   │   │   │   └── route.ts       # GET proposal by slug
-│   │   │   │   └── route.ts           # CRUD operations
+│   │   │   │   │   └── route.ts   # GET proposal by slug
+│   │   │   │   └── route.ts       # CRUD operations
 │   │   │   └── responses/
-│   │   │       └── route.ts            # Response management
+│   │   │       └── route.ts       # Response management
 │   │   ├── dashboard/
 │   │   │   ├── create/
-│   │   │   │   └── page.tsx            # Create proposal page
-│   │   │   └── page.tsx                # Dashboard (list proposals)
+│   │   │   │   └── page.tsx       # Create proposal page
+│   │   │   └── page.tsx           # Dashboard (list proposals)
 │   │   ├── v/
 │   │   │   └── [slug]/
 │   │   │       ├── success/
-│   │   │       │   └── page.tsx        # Success celebration page
-│   │   │       └── page.tsx            # Public proposal page
-│   │   ├── layout.tsx                  # Root layout
-│   │   ├── page.tsx                    # Landing page
-│   │   └── globals.css                 # Global styles
+│   │   │       │   └── page.tsx   # Success celebration page
+│   │   │       └── page.tsx       # Public proposal page
+│   │   ├── layout.tsx             # Root layout with fonts & meta
+│   │   ├── page.tsx               # Landing page
+│   │   └── globals.css            # Global styles & animations
 │   ├── components/
-│   │   └── AuthProvider.tsx            # Auth context provider
+│   │   └── AuthProvider.tsx       # Auth context provider
 │   ├── lib/
-│   │   ├── auth.ts                     # NextAuth configuration
-│   │   └── prisma.ts                   # Prisma client setup
+│   │   ├── auth.ts                # NextAuth configuration
+│   │   └── prisma.ts              # Prisma client setup
 │   └── types/
-│       └── next-auth.d.ts              # NextAuth type definitions
-├── .env                                # Environment variables
-├── next.config.ts                      # Next.js configuration
-├── package.json                        # Dependencies
-└── README.md                           # This file
+│       └── next-auth.d.ts         # NextAuth type definitions
+├── doc/
+│   ├── DOCKER.md                  # Docker deployment guide
+│   ├── VERCEL.md                  # Vercel deployment guide
+│   └── VERCEL_REQUIREMENTS.md     # Vercel requirements checklist
+├── .env                           # Environment variables
+├── Dockerfile                     # Docker configuration
+├── docker-compose.yml             # Docker Compose configuration
+├── next.config.ts                 # Next.js configuration
+├── package.json                   # Dependencies
+└── README.md                      # This file
+```
+
+## 🎨 Design System
+
+### Color Palette
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--background` | `#0a0a0a` | Dark background |
+| `--foreground` | `#ededed` | Light text |
+| `--primary` | `#ff2d55` | Primary pink |
+| `--primary-light` | `#ff6b8a` | Light pink |
+| `--secondary` | `#ff85a2` | Secondary pink |
+| `--accent` | `#ff1744` | Accent red |
+| `--card-bg` | `rgba(255, 45, 85, 0.1)` | Card backgrounds |
+| `--glass` | `rgba(255, 255, 255, 0.05)` | Glass effect |
+
+### Typography
+
+| Font | Usage | Weight |
+|------|-------|--------|
+| **Great Vibes** | Romantic headings ("Will you be my Valentine?") | 400 |
+| **Dancing Script** | Script accents | 400-700 |
+| **Poppins** | Body text | 300-700 |
+| **Inter** | UI elements | 400-600 |
+
+### Key CSS Classes
+
+```css
+.gradient-text       /* Pink gradient text effect */
+.glass-card          /* Frosted glass card style */
+.btn-primary         /* Primary action button (pink) */
+.btn-secondary       /* Secondary action button */
+.btn-yes             /* Green YES button */
+.btn-no              /* Red NO button */
+.heartbeat           /* Pulsing heart animation */
+.animate-pulse-slow  /* Slow pulse animation */
+.hearts-bg           /* Floating hearts background */
 ```
 
 ## 🔌 API Endpoints
@@ -172,49 +226,21 @@ valentine-app/
 
 ### Proposals
 - `GET /api/proposals` - Get all proposals for authenticated user
-  - Returns: Array of proposals with responses, view counts, and analytics
-  
 - `POST /api/proposals` - Create a new proposal
   - Body: `{ creatorName, partnerName, message?, image? }`
-  - Returns: Created proposal with slug
-  
 - `PUT /api/proposals` - Update a proposal
   - Body: `{ id, creatorName, partnerName, message? }`
-  - Returns: Updated proposal
-  
 - `DELETE /api/proposals?id={id}` - Delete a proposal
-  - Returns: Success status
-  
 - `GET /api/proposals/[slug]` - Get proposal by slug (public)
-  - Returns: Proposal data (also records a view)
 
 ### Responses
 - `GET /api/responses?id={id}` - Get response by ID
-  - Returns: Response with proposal data
-  
 - `POST /api/responses` - Record a response
   - Body: `{ proposalId, timeToYes, noAttempts }`
-  - Returns: Created response with ID
-  
 - `PUT /api/responses` - Update response with image
   - Body: `{ id, image }` (base64 encoded)
-  - Returns: Updated response
 
 ## 🗄️ Database Schema
-
-### User Model
-```prisma
-model User {
-  id            String     @id @default(cuid())
-  name          String?
-  email         String?    @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  proposals     Proposal[]
-}
-```
 
 ### Proposal Model
 ```prisma
@@ -249,18 +275,6 @@ model Response {
 }
 ```
 
-### View Model
-```prisma
-model View {
-  id         String   @id @default(cuid())
-  proposalId String
-  proposal   Proposal @relation(...)
-  ipHash     String?  // Hashed IP for privacy
-  userAgent  String?
-  viewedAt   DateTime @default(now())
-}
-```
-
 ## 🔐 Environment Variables
 
 | Variable | Description | Required |
@@ -286,163 +300,37 @@ model View {
 4. Click "Create Proposal Link"
 5. Copy and share the generated link
 
-### Viewing Analytics
+### How the Proposal Page Works
 
-1. Go to your dashboard
-2. View statistics for each proposal:
-   - Total views and unique visitors
-   - Response analytics (time to YES, NO attempts)
-   - Response timestamps with full date/time
-   - Uploaded images from responders
-
-### Editing/Deleting Proposals
-
-- Click "Edit" to modify proposal details
-- Click "Delete" to remove a proposal (with confirmation)
-- Click "Copy Link" to quickly share the proposal URL
-
-## 🎨 Features in Detail
-
-### Image Uploads
-
-**Creator Image:**
-- Uploaded during proposal creation
-- Stored as base64 in PostgreSQL
-- Displayed in a round frame at the top of the success page
-- Maximum size: 5MB
-
-**Responder Image:**
-- Uploaded after saying YES on the success page
-- Stored as base64 in PostgreSQL
-- Displayed on success page and dashboard analytics
-- Maximum size: 5MB
-
-### Page View Tracking
-
-- Automatically tracks views when proposal link is opened
-- Uses IP hashing for privacy (SHA-256 hash)
-- Tracks user agent for analytics
-- Calculates unique visitors based on hashed IPs
-
-### Time Formatting
-
-- **Duration**: Short format (e.g., "1m 49s", "3s")
-- **Date/Time**: Full format with seconds (e.g., "5/2/2026 10:30:45 AM")
-
-### Session Persistence
-
-- Uses localStorage to persist NO attempts and start time
-- Survives page refreshes
-- Cleared after successful YES response
+1. Partner opens your shared link
+2. They see a personalized greeting with your name
+3. The playful "NO" button escapes when hovered/touched
+4. After clicking "YES", confetti celebrates!
+5. Optional: They can upload a photo response
+6. You can view their response in your dashboard
 
 ## 🚢 Deployment
 
-### Prerequisites for Production
-
-1. Set up a PostgreSQL database (recommended: Aiven, Supabase, or Railway)
-2. Configure Google OAuth credentials for production domain
-3. Set all environment variables in your hosting platform
-
 ### Deploy with Docker
-
-The easiest way to deploy this application is using Docker. The Dockerfile is configured to build a production-ready Next.js standalone application.
-
-#### Build Docker Image
 
 ```bash
 # Build the Docker image
 docker build -t valentine-app .
 
-# Or using npm script
-npm run docker:build
+# Run with environment file
+docker run -d -p 3000:3000 --env-file .env --name valentine-app valentine-app
 ```
 
-#### Run Docker Container
+See [doc/DOCKER.md](doc/DOCKER.md) for detailed Docker deployment instructions.
 
-```bash
-# Run the container (port 3000)
-docker run -p 3000:3000 \
-  -e DATABASE_URL="your-database-url" \
-  -e NEXTAUTH_URL="http://localhost:3000" \
-  -e NEXTAUTH_SECRET="your-secret-key" \
-  -e GOOGLE_CLIENT_ID="your-google-client-id" \
-  -e GOOGLE_CLIENT_SECRET="your-google-client-secret" \
-  valentine-app
-
-# Or using npm script
-npm run docker:run
-```
-
-#### Run with Docker Compose (Recommended)
-
-Create a `docker-compose.yml` file:
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - NEXTAUTH_URL=${NEXTAUTH_URL}
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - NODE_TLS_REJECT_UNAUTHORIZED=${NODE_TLS_REJECT_UNAUTHORIZED:-0}
-    restart: unless-stopped
-```
-
-Then run:
-```bash
-docker-compose up -d
-```
-
-#### Deploy to Linux Server
-
-1. **Copy files to your Linux server**:
-   ```bash
-   scp -r . user@your-server:/path/to/app
-   ```
-
-2. **SSH into your server**:
-   ```bash
-   ssh user@your-server
-   ```
-
-3. **Build and run**:
-   ```bash
-   cd /path/to/app
-   docker build -t valentine-app .
-   docker run -d -p 3000:3000 \
-     --env-file .env \
-     --name valentine-app \
-     valentine-app
-   ```
-
-4. **Use a reverse proxy** (nginx/traefik) to handle SSL and domain routing
-
-### Alternative: Deploy to Vercel
+### Deploy to Vercel
 
 1. Push your code to GitHub
 2. Import project in Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy!
 
-### Database Migrations
-
-```bash
-# Generate Prisma Client
-npx prisma generate
-
-# Push schema changes
-npx prisma db push
-
-# Or use migrations (recommended for production)
-npx prisma migrate dev
-```
+See [doc/VERCEL.md](doc/VERCEL.md) for detailed Vercel deployment instructions.
 
 ## 🐛 Troubleshooting
 
@@ -466,13 +354,35 @@ npx prisma generate
 lsof -ti:3000 | xargs kill
 ```
 
+### Fonts Not Loading
+
+Ensure the layout.tsx has all font variables applied to the body:
+```tsx
+<body className={`${inter.variable} ${greatVibes.variable} ${dancingScript.variable} ${poppins.variable} antialiased`}>
+```
+
+## 📱 Mobile Optimizations
+
+The app is fully optimized for mobile devices:
+
+- **iOS Safari**:
+  - Address bar color matches dark theme
+  - Bottom navigation bar color matches background
+  - Safe area insets for notch/home indicator
+  - PWA "Add to Home Screen" support
+  
+- **Responsive Design**:
+  - Touch-friendly buttons (min 44px touch targets)
+  - NO button stays within viewport on mobile
+  - Readable fonts on all screen sizes
+
 ## 📄 License
 
 This project is open source and available for personal use.
 
 ## 💝 Made with Love
 
-Built for Valentine's Day 2026 with Next.js, React, and lots of 💕
+Built for Valentine's Day 2026 with Next.js, React, Tailwind CSS, and lots of 💕
 
 ---
 

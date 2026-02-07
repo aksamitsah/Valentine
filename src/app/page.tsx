@@ -29,7 +29,16 @@ export default function Home() {
         <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 heartbeat">
           💕
         </h1>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-3 sm:mb-4 px-2">
+        <h2
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl gradient-text mb-3 sm:mb-4 px-2 py-2"
+          style={{
+            fontFamily: 'var(--font-great-vibes), "Great Vibes", cursive',
+            fontWeight: 400,
+            lineHeight: 1.4,
+            WebkitTextStroke: '1px currentColor',
+            textShadow: '0 0 2px rgba(255, 45, 85, 0.5), 0 0 4px rgba(255, 45, 85, 0.3)'
+          }}
+        >
           Be My Valentine?
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-4 sm:mb-6 leading-relaxed px-2">

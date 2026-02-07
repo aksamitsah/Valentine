@@ -1,11 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Great_Vibes, Dancing_Script, Poppins } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const greatVibes = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-great-vibes",
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing-script",
+});
+
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-poppins",
 });
 
 export const viewport: Viewport = {
@@ -48,7 +65,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className={`${inter.variable} antialiased bg-[#0a0a0a]`}>
+      <body className={`${inter.variable} ${greatVibes.variable} ${dancingScript.variable} ${poppins.variable} antialiased bg-[#0a0a0a]`}>
         <AuthProvider>
           <div className="hearts-bg" />
           {children}

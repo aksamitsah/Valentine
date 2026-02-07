@@ -283,8 +283,17 @@ export default function ProposalPage() {
                 )}
 
                 {/* The big question */}
-                <div className="glass-card p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text animate-pulse-slow">
+                <div className="glass-card p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 overflow-visible">
+                    <h2
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl gradient-text animate-pulse-slow py-2"
+                        style={{
+                            fontFamily: 'var(--font-great-vibes), "Great Vibes", cursive',
+                            fontWeight: 400,
+                            lineHeight: 1.4,
+                            WebkitTextStroke: '1px currentColor',
+                            textShadow: '0 0 2px rgba(255, 45, 85, 0.5), 0 0 4px rgba(255, 45, 85, 0.3)'
+                        }}
+                    >
                         Will you be my Valentine?
                     </h2>
                 </div>

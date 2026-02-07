@@ -9,6 +9,20 @@
   --accent: #ff1744;
   --card-bg: rgba(255, 45, 85, 0.1);
   --glass: rgba(255, 255, 255, 0.05);
+  /* Fonts */
+  --font-heading: var(--font-great-vibes), 'Great Vibes', cursive;
+  --font-script: var(--font-dancing-script), 'Dancing Script', cursive;
+  --font-body: var(--font-poppins), 'Poppins', sans-serif;
+}
+
+/* Romantic heading font class */
+.font-romantic {
+  font-family: var(--font-heading);
+}
+
+/* Script font class */
+.font-script {
+  font-family: var(--font-script);
 }
 
 * {
