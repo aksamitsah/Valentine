@@ -92,7 +92,7 @@ function SuccessContent() {
             const reader = new FileReader();
             reader.onloadend = async () => {
                 const base64 = reader.result as string;
-                
+
                 // Upload to API
                 const res = await fetch("/api/responses", {
                     method: "PUT",
@@ -133,7 +133,7 @@ function SuccessContent() {
     }));
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-4 relative z-10 overflow-hidden">
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative z-10 overflow-hidden">
             {/* Confetti */}
             {showConfetti && (
                 <div className="fixed inset-0 pointer-events-none z-50">
@@ -158,8 +158,8 @@ function SuccessContent() {
                             }}
                             style={{
                                 position: "absolute",
-                                width: piece.size,
-                                height: piece.size,
+                                width: piece.size * 0.8,
+                                height: piece.size * 0.8,
                                 backgroundColor: piece.color,
                                 borderRadius: piece.id % 3 === 0 ? "50%" : "0",
                             }}
@@ -168,16 +168,16 @@ function SuccessContent() {
                 </div>
             )}
 
-            <div className="text-center max-w-2xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto w-full">
                 {/* Round Profile Image at Top */}
                 {proposal?.image && (
                     <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="mb-6"
+                        className="mb-4 sm:mb-6"
                     >
-                        <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto">
+                        <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto">
                             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-pink-500 p-1 animate-pulse">
                                 <div className="w-full h-full rounded-full overflow-hidden bg-black">
                                     <Image
@@ -190,7 +190,7 @@ function SuccessContent() {
                             </div>
                             {/* Heart decoration */}
                             <motion.div
-                                className="absolute -bottom-2 -right-2 text-3xl"
+                                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 text-2xl sm:text-3xl"
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ repeat: Infinity, duration: 1.5 }}
                             >
@@ -205,7 +205,7 @@ function SuccessContent() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 10, delay: proposal?.image ? 0.2 : 0 }}
-                    className="text-8xl md:text-9xl mb-6"
+                    className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl mb-4 sm:mb-6"
                 >
                     🎉💕🎉
                 </motion.div>
@@ -214,7 +214,7 @@ function SuccessContent() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: proposal?.image ? 0.5 : 0.3 }}
-                    className="text-4xl md:text-6xl font-bold gradient-text mb-4"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold gradient-text mb-3 sm:mb-4 px-2"
                 >
                     YES! You said YES!
                 </motion.h1>
@@ -223,7 +223,7 @@ function SuccessContent() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: proposal?.image ? 0.7 : 0.5 }}
-                    className="text-xl text-gray-300 mb-8"
+                    className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 px-2"
                 >
                     This is going to be the most amazing Valentine&apos;s Day ever! 💕
                 </motion.p>
@@ -233,17 +233,17 @@ function SuccessContent() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="glass-card p-6 mb-8"
+                    className="glass-card p-4 sm:p-6 mb-6 sm:mb-8"
                 >
-                    <h3 className="text-lg font-semibold text-gray-300 mb-4">💘 Your Love Stats</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/5 rounded-lg p-4">
-                            <div className="text-3xl font-bold text-green-400">{formatTime(time)}</div>
-                            <div className="text-sm text-gray-400">Time to say YES</div>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">💘 Your Love Stats</h3>
+                    <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                        <div className="bg-white/5 rounded-lg p-3 sm:p-4">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-400">{formatTime(time)}</div>
+                            <div className="text-xs sm:text-sm text-gray-400">Time to say YES</div>
                         </div>
-                        <div className="bg-white/5 rounded-lg p-4">
-                            <div className="text-3xl font-bold text-pink-400">{attempts || 0}</div>
-                            <div className="text-sm text-gray-400">NO button escapes</div>
+                        <div className="bg-white/5 rounded-lg p-3 sm:p-4">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-pink-400">{attempts || 0}</div>
+                            <div className="text-xs sm:text-sm text-gray-400">NO button escapes</div>
                         </div>
                     </div>
                 </motion.div>
@@ -254,10 +254,10 @@ function SuccessContent() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
-                        className="glass-card p-6 mb-8"
+                        className="glass-card p-4 sm:p-6 mb-6 sm:mb-8"
                     >
-                        <h3 className="text-lg font-semibold text-gray-300 mb-4">📸 Share Your Moment</h3>
-                        
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">📸 Share Your Moment</h3>
+
                         {image ? (
                             <div className="relative">
                                 <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-white/5">
@@ -270,7 +270,7 @@ function SuccessContent() {
                                 </div>
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="mt-4 text-sm text-pink-400 hover:text-pink-300 transition-colors"
+                                    className="mt-3 sm:mt-4 text-sm text-pink-400 hover:text-pink-300 active:text-pink-200 transition-colors"
                                 >
                                     📷 Change Photo
                                 </button>
@@ -278,24 +278,24 @@ function SuccessContent() {
                         ) : (
                             <div
                                 onClick={() => fileInputRef.current?.click()}
-                                className="border-2 border-dashed border-white/20 rounded-lg p-8 cursor-pointer hover:border-pink-500/50 transition-colors"
+                                className="border-2 border-dashed border-white/20 rounded-lg p-6 sm:p-8 cursor-pointer hover:border-pink-500/50 active:border-pink-500/70 transition-colors"
                             >
                                 {uploading ? (
-                                    <div className="flex flex-col items-center gap-3">
+                                    <div className="flex flex-col items-center gap-2 sm:gap-3">
                                         <div className="spinner" />
-                                        <p className="text-gray-400">Uploading...</p>
+                                        <p className="text-gray-400 text-sm">Uploading...</p>
                                     </div>
                                 ) : (
-                                    <div className="flex flex-col items-center gap-3">
-                                        <div className="text-5xl">📷</div>
-                                        <p className="text-gray-300 font-medium">Upload a Photo</p>
-                                        <p className="text-sm text-gray-500">Capture this special moment together!</p>
-                                        <p className="text-xs text-gray-600">Max 5MB • JPG, PNG, GIF</p>
+                                    <div className="flex flex-col items-center gap-2 sm:gap-3">
+                                        <div className="text-4xl sm:text-5xl">📷</div>
+                                        <p className="text-gray-300 font-medium text-sm sm:text-base">Upload a Photo</p>
+                                        <p className="text-xs sm:text-sm text-gray-500">Capture this special moment together!</p>
+                                        <p className="text-[10px] sm:text-xs text-gray-600">Max 5MB • JPG, PNG, GIF</p>
                                     </div>
                                 )}
                             </div>
                         )}
-                        
+
                         <input
                             ref={fileInputRef}
                             type="file"
@@ -310,7 +310,7 @@ function SuccessContent() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    className="text-green-400 text-sm mt-3"
+                                    className="text-green-400 text-xs sm:text-sm mt-2 sm:mt-3"
                                 >
                                     ✓ Photo uploaded successfully!
                                 </motion.p>
@@ -324,36 +324,36 @@ function SuccessContent() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9 }}
-                    className="glass-card p-6 mb-8"
+                    className="glass-card p-4 sm:p-6 mb-6 sm:mb-8"
                 >
-                    <h3 className="text-lg font-semibold text-gray-300 mb-4">💡 Valentine&apos;s Day Ideas</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-                        <div className="bg-white/5 rounded-lg p-3 flex items-center gap-3">
-                            <span className="text-2xl">🍽️</span>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-300 mb-3 sm:mb-4">💡 Valentine&apos;s Day Ideas</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-left">
+                        <div className="bg-white/5 rounded-lg p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3">
+                            <span className="text-xl sm:text-2xl">🍽️</span>
                             <div>
-                                <div className="font-medium">Romantic Dinner</div>
-                                <div className="text-sm text-gray-400">Cook together or go out</div>
+                                <div className="font-medium text-sm sm:text-base">Romantic Dinner</div>
+                                <div className="text-xs sm:text-sm text-gray-400">Cook together or go out</div>
                             </div>
                         </div>
-                        <div className="bg-white/5 rounded-lg p-3 flex items-center gap-3">
-                            <span className="text-2xl">🎬</span>
+                        <div className="bg-white/5 rounded-lg p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3">
+                            <span className="text-xl sm:text-2xl">🎬</span>
                             <div>
-                                <div className="font-medium">Movie Night</div>
-                                <div className="text-sm text-gray-400">Watch your favorite films</div>
+                                <div className="font-medium text-sm sm:text-base">Movie Night</div>
+                                <div className="text-xs sm:text-sm text-gray-400">Watch your favorite films</div>
                             </div>
                         </div>
-                        <div className="bg-white/5 rounded-lg p-3 flex items-center gap-3">
-                            <span className="text-2xl">🌹</span>
+                        <div className="bg-white/5 rounded-lg p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3">
+                            <span className="text-xl sm:text-2xl">🌹</span>
                             <div>
-                                <div className="font-medium">Flowers & Chocolates</div>
-                                <div className="text-sm text-gray-400">A classic combo</div>
+                                <div className="font-medium text-sm sm:text-base">Flowers & Chocolates</div>
+                                <div className="text-xs sm:text-sm text-gray-400">A classic combo</div>
                             </div>
                         </div>
-                        <div className="bg-white/5 rounded-lg p-3 flex items-center gap-3">
-                            <span className="text-2xl">✨</span>
+                        <div className="bg-white/5 rounded-lg p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3">
+                            <span className="text-xl sm:text-2xl">✨</span>
                             <div>
-                                <div className="font-medium">Stargazing</div>
-                                <div className="text-sm text-gray-400">A magical evening under the stars</div>
+                                <div className="font-medium text-sm sm:text-base">Stargazing</div>
+                                <div className="text-xs sm:text-sm text-gray-400">A magical evening under the stars</div>
                             </div>
                         </div>
                     </div>
@@ -364,7 +364,7 @@ function SuccessContent() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.1 }}
-                    className="text-gray-500 text-sm"
+                    className="text-gray-500 text-xs sm:text-sm px-4"
                 >
                     Take a screenshot and share this special moment! 📸💕
                 </motion.p>

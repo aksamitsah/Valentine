@@ -266,13 +266,186 @@ body {
   }
 }
 
-/* Responsive */
+/* ==================== */
+/* RESPONSIVE STYLES    */
+/* ==================== */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .glass-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
+
+  html,
+  body {
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+
+  .btn-secondary {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
 
   .btn-yes,
   .btn-no {
-    padding: 16px 40px;
+    padding: 16px 36px;
     font-size: 1.1rem;
-    min-width: 120px;
+    min-width: 110px;
+  }
+
+  .glass-card {
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .input-field {
+    padding: 14px 16px;
+    font-size: 16px;
+    /* Prevents zoom on iOS */
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+
+  html,
+  body {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-secondary {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-yes {
+    padding: 14px 32px;
+    font-size: 1rem;
+    min-width: 100px;
+  }
+
+  .btn-no {
+    padding: 14px 32px;
+    font-size: 1rem;
+    min-width: 100px;
+  }
+
+  .glass-card {
+    margin-left: 4px;
+    margin-right: 4px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .input-field {
+    padding: 12px 14px;
+  }
+
+  /* Reduce floating hearts on small screens for performance */
+  .hearts-bg::before,
+  .hearts-bg::after {
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+
+  html,
+  body {
+    font-size: 13px;
+  }
+
+  .btn-yes,
+  .btn-no {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    min-width: 90px;
+  }
+
+  .glass-card {
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-yes:hover {
+    transform: none;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-yes:active {
+    transform: scale(0.98);
+  }
+
+  /* Make touch targets larger */
+  .btn-primary,
+  .btn-secondary,
+  .btn-yes,
+  .btn-no {
+    min-height: 48px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .heartbeat {
+    animation: none;
+  }
+
+  .glass-card {
+    padding: 8px 16px;
+  }
+}
+
+/* Safe area padding for notched phones */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  .heartbeat,
+  .animate-pulse-slow {
+    animation: none;
+  }
+
+  .hearts-bg::before,
+  .hearts-bg::after {
+    animation: none;
   }
 }

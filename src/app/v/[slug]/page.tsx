@@ -225,24 +225,24 @@ export default function ProposalPage() {
         return (
             <main className="min-h-screen flex items-center justify-center p-4 relative z-10">
                 <FallingHearts />
-                <div className="glass-card p-8 text-center max-w-md">
-                    <div className="text-6xl mb-4">💔</div>
-                    <h1 className="text-2xl font-bold text-white mb-2">Oops!</h1>
-                    <p className="text-gray-400">{error || "Proposal not found"}</p>
+                <div className="glass-card p-6 sm:p-8 text-center max-w-md w-full">
+                    <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">💔</div>
+                    <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Oops!</h1>
+                    <p className="text-gray-400 text-sm sm:text-base">{error || "Proposal not found"}</p>
                 </div>
             </main>
         );
     }
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
             {/* Falling Hearts Background */}
             <FallingHearts />
 
-            <div className="text-center max-w-2xl mx-auto relative z-10">
+            <div className="text-center max-w-2xl mx-auto relative z-10 w-full">
                 {/* Heart animation */}
                 <motion.div
-                    className="text-7xl md:text-8xl mb-6"
+                    className="text-6xl sm:text-7xl md:text-8xl mb-4 sm:mb-6"
                     animate={{
                         scale: [1, 1.2, 1],
                     }}
@@ -256,23 +256,23 @@ export default function ProposalPage() {
                 </motion.div>
 
                 {/* Greeting */}
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">
                     Hey <span className="gradient-text">{proposal.partnerName}</span>! 👋
                 </h1>
 
-                <p className="text-xl text-gray-300 mb-2">
+                <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-2 px-2">
                     <span className="text-white font-semibold">{proposal.creatorName}</span> has something special to ask you...
                 </p>
 
                 {proposal.message && (
-                    <p className="text-gray-400 italic mb-8 max-w-md mx-auto">
+                    <p className="text-gray-400 italic mb-6 sm:mb-8 max-w-md mx-auto text-sm sm:text-base px-4">
                         &ldquo;{proposal.message}&rdquo;
                     </p>
                 )}
 
                 {/* The big question */}
-                <div className="glass-card p-8 mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold gradient-text animate-pulse-slow">
+                <div className="glass-card p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text animate-pulse-slow">
                         Will you be my Valentine?
                     </h2>
                 </div>
@@ -280,9 +280,9 @@ export default function ProposalPage() {
                 {/* Buttons container - [YES] [NO] side by side */}
                 <div
                     ref={buttonContainerRef}
-                    className="relative h-[200px] w-full max-w-lg mx-auto flex items-start justify-center pt-4"
+                    className="relative h-[180px] sm:h-[200px] w-full max-w-lg mx-auto flex items-start justify-center pt-2 sm:pt-4 overflow-hidden"
                 >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                         {/* YES button - stays in place */}
                         <motion.button
                             onClick={handleYesClick}
@@ -296,8 +296,8 @@ export default function ProposalPage() {
                         {/* NO button - moves but stays visible */}
                         <motion.button
                             animate={{
-                                x: noPosition.x,
-                                y: noPosition.y
+                                x: noPosition.x * 0.7,
+                                y: noPosition.y * 0.7
                             }}
                             transition={{
                                 type: "spring",
@@ -324,9 +324,9 @@ export default function ProposalPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
-                            className="text-center mt-4"
+                            className="text-center mt-2 sm:mt-4"
                         >
-                            <p className="text-pink-400 text-lg font-medium">
+                            <p className="text-pink-400 text-sm sm:text-base md:text-lg font-medium">
                                 {noAttempts === 1 && "Nice try! 😏"}
                                 {noAttempts === 2 && "Still trying? 😂"}
                                 {noAttempts === 3 && "You can't escape love! 💕"}

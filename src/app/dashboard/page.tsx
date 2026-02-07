@@ -190,16 +190,16 @@ export default function Dashboard() {
     }
 
     return (
-        <main className="min-h-screen p-8 relative z-10">
+        <main className="min-h-screen p-4 sm:p-6 md:p-8 relative z-10">
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold gradient-text">Dashboard</h1>
-                        <p className="text-gray-400">Welcome back, {session.user?.name} 💕</p>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+                    <div className="text-center sm:text-left">
+                        <h1 className="text-2xl sm:text-3xl font-bold gradient-text">Dashboard</h1>
+                        <p className="text-gray-400 text-sm sm:text-base">Welcome back, {session.user?.name} 💕</p>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <Link href="/dashboard/create" className="btn-primary">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
+                        <Link href="/dashboard/create" className="btn-primary text-center justify-center">
                             + Create New
                         </Link>
                         <button onClick={() => signOut()} className="btn-secondary text-sm py-2 px-4">
@@ -210,42 +210,42 @@ export default function Dashboard() {
 
                 {/* Proposals List */}
                 {proposals.length === 0 ? (
-                    <div className="glass-card p-12 text-center">
-                        <div className="text-6xl mb-4">💌</div>
-                        <h2 className="text-2xl font-semibold mb-2">No proposals yet</h2>
-                        <p className="text-gray-400 mb-6">
+                    <div className="glass-card p-6 sm:p-8 md:p-12 text-center">
+                        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">💌</div>
+                        <h2 className="text-xl sm:text-2xl font-semibold mb-2">No proposals yet</h2>
+                        <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">
                             Create your first Valentine proposal link!
                         </p>
-                        <Link href="/dashboard/create" className="btn-primary">
+                        <Link href="/dashboard/create" className="btn-primary inline-block">
                             Create Your First Proposal
                         </Link>
                     </div>
                 ) : (
                     <div className="space-y-4">
                         {proposals.map((proposal) => (
-                            <div key={proposal.id} className="glass-card p-6">
-                                <div className="flex items-start justify-between">
-                                    <div>
-                                        <h3 className="text-xl font-semibold mb-1">
+                            <div key={proposal.id} className="glass-card p-4 sm:p-6">
+                                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-lg sm:text-xl font-semibold mb-1 truncate">
                                             To: {proposal.partnerName} 💕
                                         </h3>
-                                        <p className="text-gray-400 text-sm mb-2">
+                                        <p className="text-gray-400 text-xs sm:text-sm mb-2">
                                             From: {proposal.creatorName}
                                         </p>
                                         {proposal.message && (
-                                            <p className="text-gray-300 text-sm italic mb-3">
+                                            <p className="text-gray-300 text-xs sm:text-sm italic mb-3 line-clamp-2">
                                                 &ldquo;{proposal.message}&rdquo;
                                             </p>
                                         )}
-                                        <div className="flex items-center gap-4 text-sm flex-wrap">
+                                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
                                             <span className="text-gray-500">
                                                 Created: {new Date(proposal.createdAt).toLocaleDateString()}
                                             </span>
-                                            <span className="text-gray-500">•</span>
+                                            <span className="hidden sm:inline text-gray-500">•</span>
                                             <span className="text-purple-400">
                                                 👁️ {proposal.totalViews} view{proposal.totalViews !== 1 ? 's' : ''} ({proposal.uniqueVisitors} unique)
                                             </span>
-                                            <span className="text-gray-500">•</span>
+                                            <span className="hidden sm:inline text-gray-500">•</span>
                                             <span className={proposal.responses.length > 0 ? "text-green-400" : "text-yellow-400"}>
                                                 {proposal.responses.length > 0
                                                     ? `✓ ${proposal.responses.length} Response${proposal.responses.length > 1 ? 's' : ''}`
@@ -253,27 +253,27 @@ export default function Dashboard() {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-end gap-2">
+                                    <div className="flex flex-col gap-2 w-full sm:w-auto">
                                         <button
                                             onClick={() => copyLink(proposal.slug)}
-                                            className={`text-sm px-4 py-2 rounded-full transition-all ${copied === proposal.slug
+                                            className={`text-sm px-4 py-2 rounded-full transition-all w-full sm:w-auto ${copied === proposal.slug
                                                 ? "bg-green-500/20 text-green-400"
-                                                : "bg-white/10 text-white hover:bg-white/20"
+                                                : "bg-white/10 text-white hover:bg-white/20 active:bg-white/30"
                                                 }`}
                                         >
                                             {copied === proposal.slug ? "✓ Copied!" : "📋 Copy Link"}
                                         </button>
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center justify-center sm:justify-end gap-3 sm:gap-2 text-sm">
                                             <button
                                                 onClick={() => setEditingProposal(proposal)}
-                                                className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                                                className="text-blue-400 hover:text-blue-300 active:text-blue-200 transition-colors p-1"
                                             >
                                                 ✏️ Edit
                                             </button>
                                             <span className="text-gray-600">|</span>
                                             <button
                                                 onClick={() => setDeletingId(proposal.id)}
-                                                className="text-sm text-red-400 hover:text-red-300 transition-colors"
+                                                className="text-red-400 hover:text-red-300 active:text-red-200 transition-colors p-1"
                                             >
                                                 🗑️ Delete
                                             </button>
@@ -281,7 +281,7 @@ export default function Dashboard() {
                                             <Link
                                                 href={`/v/${proposal.slug}`}
                                                 target="_blank"
-                                                className="text-sm text-gray-400 hover:text-white transition-colors"
+                                                className="text-gray-400 hover:text-white active:text-gray-200 transition-colors p-1"
                                             >
                                                 Preview →
                                             </Link>
@@ -291,22 +291,22 @@ export default function Dashboard() {
 
                                 {/* View Stats - Always show when there are views */}
                                 {proposal.totalViews > 0 && (
-                                    <div className="mt-4 pt-4 border-t border-white/10">
-                                        <h4 className="text-sm font-semibold text-gray-400 mb-3">
+                                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10">
+                                        <h4 className="text-xs sm:text-sm font-semibold text-gray-400 mb-2 sm:mb-3">
                                             👁️ View Statistics
                                         </h4>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-white/5 rounded-lg p-3 text-center">
-                                                <div className="text-2xl font-bold text-purple-400">
+                                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                                            <div className="bg-white/5 rounded-lg p-2 sm:p-3 text-center">
+                                                <div className="text-xl sm:text-2xl font-bold text-purple-400">
                                                     {proposal.totalViews}
                                                 </div>
-                                                <div className="text-xs text-gray-400">Total Views</div>
+                                                <div className="text-[10px] sm:text-xs text-gray-400">Total Views</div>
                                             </div>
-                                            <div className="bg-white/5 rounded-lg p-3 text-center">
-                                                <div className="text-2xl font-bold text-cyan-400">
+                                            <div className="bg-white/5 rounded-lg p-2 sm:p-3 text-center">
+                                                <div className="text-xl sm:text-2xl font-bold text-cyan-400">
                                                     {proposal.uniqueVisitors}
                                                 </div>
-                                                <div className="text-xs text-gray-400">Unique Visitors</div>
+                                                <div className="text-[10px] sm:text-xs text-gray-400">Unique Visitors</div>
                                             </div>
                                         </div>
                                     </div>
@@ -348,24 +348,24 @@ export default function Dashboard() {
                                                         <p className="text-xs text-gray-500 text-center mt-2">📸 Shared moment</p>
                                                     </div>
                                                 )}
-                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                                    <div className="bg-white/5 rounded-lg p-3 text-center">
-                                                        <div className="text-2xl font-bold text-green-400">
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
+                                                    <div className="bg-white/5 rounded-lg p-2 sm:p-3 text-center">
+                                                        <div className="text-lg sm:text-2xl font-bold text-green-400">
                                                             {formatTime(response.timeToYes)}
                                                         </div>
-                                                        <div className="text-xs text-gray-400">Time to YES</div>
+                                                        <div className="text-[10px] sm:text-xs text-gray-400">Time to YES</div>
                                                     </div>
-                                                    <div className="bg-white/5 rounded-lg p-3 text-center">
-                                                        <div className="text-2xl font-bold text-red-400">
+                                                    <div className="bg-white/5 rounded-lg p-2 sm:p-3 text-center">
+                                                        <div className="text-lg sm:text-2xl font-bold text-red-400">
                                                             {response.noAttempts || 0}
                                                         </div>
-                                                        <div className="text-xs text-gray-400">NO Attempts</div>
+                                                        <div className="text-[10px] sm:text-xs text-gray-400">NO Attempts</div>
                                                     </div>
-                                                    <div className="bg-white/5 rounded-lg p-3 text-center">
-                                                        <div className="text-lg font-bold text-blue-400">
+                                                    <div className="bg-white/5 rounded-lg p-2 sm:p-3 text-center col-span-2 md:col-span-1">
+                                                        <div className="text-sm sm:text-lg font-bold text-blue-400">
                                                             {formatDateTime(response.respondedAt)}
                                                         </div>
-                                                        <div className="text-xs text-gray-400">Responded On</div>
+                                                        <div className="text-[10px] sm:text-xs text-gray-400">Responded On</div>
                                                     </div>
                                                 </div>
                                             </div>

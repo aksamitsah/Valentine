@@ -120,27 +120,27 @@ export default function CreateProposal() {
         const link = `${typeof window !== "undefined" ? window.location.origin : ""}/v/${success}`;
 
         return (
-            <main className="min-h-screen flex items-center justify-center p-4 relative z-10">
-                <div className="glass-card p-8 max-w-lg w-full text-center">
-                    <div className="text-6xl mb-4 heartbeat">🎉</div>
-                    <h1 className="text-3xl font-bold gradient-text mb-4">
+            <main className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative z-10">
+                <div className="glass-card p-6 sm:p-8 max-w-lg w-full text-center">
+                    <div className="text-5xl sm:text-6xl mb-3 sm:mb-4 heartbeat">🎉</div>
+                    <h1 className="text-2xl sm:text-3xl font-bold gradient-text mb-3 sm:mb-4">
                         Proposal Created!
                     </h1>
-                    <p className="text-gray-400 mb-6">
+                    <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">
                         Share this magical link with <span className="text-white font-semibold">{formData.partnerName}</span>
                     </p>
 
-                    <div className="bg-white/5 rounded-lg p-4 mb-6">
-                        <p className="text-sm text-gray-400 mb-2">Your special link:</p>
-                        <p className="text-white font-mono text-sm break-all">{link}</p>
+                    <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                        <p className="text-xs sm:text-sm text-gray-400 mb-2">Your special link:</p>
+                        <p className="text-white font-mono text-xs sm:text-sm break-all">{link}</p>
                     </div>
 
                     <div className="flex flex-col gap-3">
                         <button
                             onClick={copyLink}
-                            className={`w-full py-3 rounded-full font-semibold transition-all ${copied
-                                    ? "bg-green-500 text-white"
-                                    : "bg-white text-black hover:bg-gray-200"
+                            className={`w-full py-3 rounded-full font-semibold transition-all text-sm sm:text-base ${copied
+                                ? "bg-green-500 text-white"
+                                : "bg-white text-black hover:bg-gray-200 active:bg-gray-300"
                                 }`}
                         >
                             {copied ? "✓ Copied to Clipboard!" : "📋 Copy Link"}
@@ -152,7 +152,7 @@ export default function CreateProposal() {
                         >
                             Preview Link →
                         </Link>
-                        <Link href="/dashboard" className="text-gray-400 hover:text-white text-sm">
+                        <Link href="/dashboard" className="text-gray-400 hover:text-white active:text-gray-200 text-sm">
                             ← Back to Dashboard
                         </Link>
                     </div>
@@ -162,16 +162,16 @@ export default function CreateProposal() {
     }
 
     return (
-        <main className="min-h-screen flex items-center justify-center p-4 relative z-10">
-            <div className="glass-card p-8 max-w-lg w-full">
-                <Link href="/dashboard" className="text-gray-400 hover:text-white text-sm mb-4 inline-block">
+        <main className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative z-10">
+            <div className="glass-card p-6 sm:p-8 max-w-lg w-full">
+                <Link href="/dashboard" className="text-gray-400 hover:text-white active:text-gray-200 text-sm mb-3 sm:mb-4 inline-block">
                     ← Back to Dashboard
                 </Link>
 
-                <h1 className="text-3xl font-bold gradient-text mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold gradient-text mb-2">
                     Create a Proposal 💕
                 </h1>
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">
                     Fill in the details and we&apos;ll create a magical link for you
                 </p>
 
