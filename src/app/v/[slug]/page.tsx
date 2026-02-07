@@ -156,8 +156,20 @@ export default function ProposalPage() {
 
     const moveNoButton = useCallback(() => {
         // Generate random position within visible area
-        // Keep button within approximately -150 to 150 pixels from center
-        const positions = [
+        // Smaller range for mobile to keep button on screen
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
+        const positions = isMobile ? [
+            { x: 80, y: 0 },       // Right
+            { x: -80, y: 0 },      // Left
+            { x: 0, y: 60 },       // Below
+            { x: 60, y: 40 },      // Bottom right
+            { x: -60, y: 40 },     // Bottom left
+            { x: 50, y: -30 },     // Top right
+            { x: -50, y: -30 },    // Top left
+            { x: 40, y: 70 },      // Far bottom right
+            { x: -40, y: 70 },     // Far bottom left
+        ] : [
             { x: 150, y: 0 },      // Right
             { x: -150, y: 0 },     // Left
             { x: 0, y: 80 },       // Below
@@ -235,7 +247,7 @@ export default function ProposalPage() {
     }
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 pb-20 relative overflow-hidden" style={{ paddingBottom: 'max(5rem, env(safe-area-inset-bottom, 20px))' }}>
             {/* Falling Hearts Background */}
             <FallingHearts />
 
@@ -280,7 +292,7 @@ export default function ProposalPage() {
                 {/* Buttons container - [YES] [NO] side by side */}
                 <div
                     ref={buttonContainerRef}
-                    className="relative h-[180px] sm:h-[200px] w-full max-w-lg mx-auto flex items-start justify-center pt-2 sm:pt-4 overflow-hidden"
+                    className="relative h-[200px] sm:h-[220px] w-full max-w-lg mx-auto flex items-start justify-center pt-4"
                 >
                     <div className="flex items-center gap-3 sm:gap-4">
                         {/* YES button - stays in place */}
@@ -296,8 +308,8 @@ export default function ProposalPage() {
                         {/* NO button - moves but stays visible */}
                         <motion.button
                             animate={{
-                                x: noPosition.x * 0.7,
-                                y: noPosition.y * 0.7
+                                x: noPosition.x,
+                                y: noPosition.y
                             }}
                             transition={{
                                 type: "spring",

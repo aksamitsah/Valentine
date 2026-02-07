@@ -133,7 +133,7 @@ function SuccessContent() {
     }));
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative z-10 overflow-hidden">
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 pb-20 relative z-10 overflow-hidden" style={{ paddingBottom: 'max(5rem, env(safe-area-inset-bottom, 20px))' }}>
             {/* Confetti */}
             {showConfetti && (
                 <div className="fixed inset-0 pointer-events-none z-50">
